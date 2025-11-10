@@ -18,10 +18,8 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: [
         "http://localhost:3000",
-        "https://dressen-customer.vercel.app",
-        "https://dressen-admin-new.vercel.app",
-        "https://dressenbd.com",
-        "https://admin.dressenbd.com",
+        "https://ar-rahman-fashion-home.vercel.app",
+        "https://ar-rahman-fashion-admin.vercel.app",
         "http://localhost:3001",
         "http://localhost:3003",
     ],
@@ -44,7 +42,7 @@ app.use((0, morgan_1.default)("dev"));
 app.use("/api/v1", routes_1.default);
 //root route
 app.get("/", (req, res) => {
-    res.send("AR Rahman server boosted on....🔥🔥🚀");
+    res.send("AR Rahman Fashion server boosted on....🔥🔥🚀");
 });
 // //global error handler
 app.use(globalErrorHandler_1.default);
