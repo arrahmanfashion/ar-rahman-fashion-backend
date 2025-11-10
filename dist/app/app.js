@@ -20,6 +20,8 @@ app.use((0, cors_1.default)({
         "http://localhost:3000",
         "https://ar-rahman-fashion-home.vercel.app",
         "https://ar-rahman-fashion-admin.vercel.app",
+        "https://dressenbd.com",
+        "https://admin.dressenbd.com",
         "http://localhost:3001",
         "http://localhost:3003",
     ],
