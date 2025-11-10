@@ -17,7 +17,7 @@ async function main() {
     await connectRedis();
 
     server = app.listen(port, () => {
-      console.log(`Dressen Server listening on port ${port}`);
+      console.log(`AR Rahman Server listening on port ${port}`);
     });
 
     process.on("SIGINT", gracefulShutdown);

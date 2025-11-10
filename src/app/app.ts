@@ -48,7 +48,7 @@ app.use("/api/v1", router);
 
 //root route
 app.get("/", (req: Request, res: Response) => {
-  res.send("Dressen server boosted on....🔥🔥🚀");
+  res.send("AR Rahman Fashion server boosted on....🔥🔥🚀");
 });
 
 // //global error handler

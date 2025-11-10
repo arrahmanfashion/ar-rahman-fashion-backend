@@ -44,7 +44,7 @@ app.use((0, morgan_1.default)("dev"));
 app.use("/api/v1", routes_1.default);
 //root route
 app.get("/", (req, res) => {
-    res.send("Dressen server boosted on....🔥🔥🚀");
+    res.send("AR Rahman server boosted on....🔥🔥🚀");
 });
 // //global error handler
 app.use(globalErrorHandler_1.default);

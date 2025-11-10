@@ -26,7 +26,7 @@ function main() {
             // Connect Redis
             yield (0, redis_config_1.connectRedis)();
             server = app_1.default.listen(port, () => {
-                console.log(`Dressen Server listening on port ${port}`);
+                console.log(`AR Rahman Server listening on port ${port}`);
             });
             process.on("SIGINT", gracefulShutdown);
             process.on("SIGTERM", gracefulShutdown);
