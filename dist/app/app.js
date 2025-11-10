@@ -18,8 +18,8 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: [
         "http://localhost:3000",
-        "https://ar-rahman-fashion-home.vercel.app",
-        "https://ar-rahman-fashion-admin.vercel.app",
+        "https://dressen-customer.vercel.app",
+        "https://dressen-admin-new.vercel.app",
         "https://dressenbd.com",
         "https://admin.dressenbd.com",
         "http://localhost:3001",
