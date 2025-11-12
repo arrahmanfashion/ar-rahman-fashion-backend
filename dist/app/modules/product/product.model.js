@@ -20,7 +20,6 @@ const brandAndCategorySchema = new mongoose_1.Schema({
     },
     tags: {
         type: [mongoose_1.Schema.Types.ObjectId],
-        required: [true, "Tag is Required!"],
         ref: "tag",
     },
     subcategory: {

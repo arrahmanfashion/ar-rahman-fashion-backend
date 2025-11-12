@@ -26,7 +26,6 @@ const brandAndCategorySchema = new Schema<TBrandAndCategories>(
     },
     tags: {
       type: [Schema.Types.ObjectId],
-      required: [true, "Tag is Required!"],
       ref: "tag",
     },
      subcategory: {
