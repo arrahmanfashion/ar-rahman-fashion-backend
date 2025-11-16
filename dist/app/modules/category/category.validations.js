@@ -18,7 +18,7 @@ exports.createCategoryZodSchema = zod_1.z.object({
             ? "Category description is required!"
             : "Not a string!",
     }),
-    icon: exports.iconSchema,
+    icon: exports.iconSchema.optional(),
     subCategories: zod_1.z.array(zod_1.z.string()).default([]).optional(),
 });
 exports.editIconSchema = zod_1.z.object({

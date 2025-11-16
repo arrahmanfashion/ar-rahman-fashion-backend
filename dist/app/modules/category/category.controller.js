@@ -37,14 +37,19 @@ const getSingleCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void
     });
 }));
 const createCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
     const files = req.files;
     const body = req.body;
-    const categoryData = Object.assign(Object.assign({}, body), { image: ((_b = (_a = files["image"]) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.path) || body.image || "", bannerImg: ((_d = (_c = files["bannerImg"]) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.path) || body.bannerImg || "", icon: {
-            name: body.icon.name || body["icon.name"], // ✅ support both cases
-            url: ((_f = (_e = files["icon"]) === null || _e === void 0 ? void 0 : _e[0]) === null || _f === void 0 ? void 0 : _f.path) || body.iconUrl || "", // ✅ icon image path
-        } });
-    console.log(categoryData);
+    const categoryData = Object.assign(Object.assign({}, body), { bannerImg: ((_b = (_a = files["bannerImg"]) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.path) || body.bannerImg || "" });
+    if (((_d = (_c = files["image"]) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.path) || body.image) {
+        categoryData.image = ((_f = (_e = files["image"]) === null || _e === void 0 ? void 0 : _e[0]) === null || _f === void 0 ? void 0 : _f.path) || body.image;
+    }
+    if (((_h = (_g = files["icon"]) === null || _g === void 0 ? void 0 : _g[0]) === null || _h === void 0 ? void 0 : _h.path) || body.iconUrl || ((_j = body.icon) === null || _j === void 0 ? void 0 : _j.name)) {
+        categoryData.icon = {
+            name: ((_k = body.icon) === null || _k === void 0 ? void 0 : _k.name) || body["icon.name"] || "",
+            url: ((_m = (_l = files["icon"]) === null || _l === void 0 ? void 0 : _l[0]) === null || _m === void 0 ? void 0 : _m.path) || body.iconUrl || "",
+        };
+    }
     const result = yield category_service_1.categoryServices.createCategoryIntoDB(categoryData);
     (0, sendResponse_1.default)(res, {
         success: true,

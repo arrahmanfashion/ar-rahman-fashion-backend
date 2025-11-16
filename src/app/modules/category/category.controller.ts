@@ -33,15 +33,19 @@ const createCategory = catchAsync(async (req, res) => {
   const body = req.body;
   const categoryData = {
     ...body,
-    image: files["image"]?.[0]?.path || body.image || "",
     bannerImg: files["bannerImg"]?.[0]?.path || body.bannerImg || "",
-    icon: {
-      name: body.icon.name || body["icon.name"], // ✅ support both cases
-      url: files["icon"]?.[0]?.path || body.iconUrl || "", // ✅ icon image path
-    },
   };
 
-  console.log(categoryData);
+  if (files["image"]?.[0]?.path || body.image) {
+    categoryData.image = files["image"]?.[0]?.path || body.image;
+  }
+
+  if (files["icon"]?.[0]?.path || body.iconUrl || body.icon?.name) {
+    categoryData.icon = {
+      name: body.icon?.name || body["icon.name"] || "",
+      url: files["icon"]?.[0]?.path || body.iconUrl || "",
+    };
+  }
 
   const result = await categoryServices.createCategoryIntoDB(categoryData);
 

@@ -10,7 +10,7 @@ export type TCategory = {
   slug?: string;
   details: string;
   icon?: TIcon;
-  image: string;
+  image?: string;
   bannerImg: string;
   subCategories?: string[];
   deletedImages?: string[];

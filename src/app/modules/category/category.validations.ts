@@ -19,7 +19,7 @@ export const createCategoryZodSchema = z.object({
         ? "Category description is required!"
         : "Not a string!",
   }),
-  icon: iconSchema,
+  icon: iconSchema.optional(),
   subCategories: z.array(z.string()).default([]).optional(),
 });
 
