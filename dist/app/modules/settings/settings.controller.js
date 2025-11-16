@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.settingsControllers = exports.deleteBannerSlider = exports.getDeliveryCharge = exports.getMobileMfs = exports.getContactAndSocial = exports.getSliderImages = exports.getLogo = void 0;
+exports.settingsControllers = exports.deleteBannerSlider = exports.getDeliverySettings = exports.getMobileMfs = exports.getContactAndSocial = exports.getSliderImages = exports.getLogo = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
@@ -107,13 +107,13 @@ exports.getMobileMfs = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
         data: result,
     });
 }));
-// ✅ Get Delivery Charge
-exports.getDeliveryCharge = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield settings_service_1.settingsServices.getDeliveryChargeFromDB();
+// ✅ Get Delivery Settings
+exports.getDeliverySettings = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield settings_service_1.settingsServices.getDeliverySettingsFromDB();
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Delivery charge retrieved successfully!",
+        message: "Delivery settings retrieved successfully!",
         data: result,
     });
 }));
@@ -231,6 +231,6 @@ exports.settingsControllers = {
     getSliderImages: exports.getSliderImages,
     getContactAndSocial: exports.getContactAndSocial,
     getMobileMfs: exports.getMobileMfs,
-    getDeliveryCharge: exports.getDeliveryCharge,
+    getDeliverySettings: exports.getDeliverySettings,
     deleteBannerSlider: exports.deleteBannerSlider,
 };

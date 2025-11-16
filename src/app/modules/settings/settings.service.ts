@@ -57,12 +57,12 @@ const getMobileMfsFromDB = async () => {
   return { mobileMfs: settings.mobileMfs };
 };
 
-// ✅ Get Delivery Charge Only (if exists)
-const getDeliveryChargeFromDB = async () => {
+// ✅ Get Delivery Settings Only
+const getDeliverySettingsFromDB = async () => {
   const settings = await SettingsModel.findOne();
-  if (!settings?.deliveryCharge && settings?.deliveryCharge !== 0)
-    throw new AppError(404, "Delivery charge not found!");
-  return { deliveryCharge: settings.deliveryCharge };
+  if (!settings?.deliverySettings)
+    throw new AppError(404, "Delivery settings not found!");
+  return { deliverySettings: settings.deliverySettings };
 };
 
 // ✅ Update Settings
@@ -310,6 +310,14 @@ const updateSettingsOnDB = async (
     };
   }
 
+  // ✅ Deep merge for deliverySettings
+  if (updatedData.deliverySettings) {
+    updatedData.deliverySettings = {
+      ...(settings.deliverySettings || {}),
+      ...(updatedData.deliverySettings || {}),
+    };
+  }
+
   // ✅ Update document - Use $set to replace entire fields
   const result = await SettingsModel.findOneAndUpdate(
     {},
@@ -392,7 +400,7 @@ export const settingsServices = {
   getSliderImagesFromDB,
   getContactAndSocialFromDB,
   getMobileMfsFromDB,
-  getDeliveryChargeFromDB,
+  getDeliverySettingsFromDB,
   updateSettingsOnDB,
   updateMfsSettingsOnDB,
   deleteBannerSliderFromDB,

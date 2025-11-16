@@ -121,13 +121,13 @@ export const getMobileMfs = catchAsync(async (req, res) => {
   });
 });
 
-// ✅ Get Delivery Charge
-export const getDeliveryCharge = catchAsync(async (req, res) => {
-  const result = await settingsServices.getDeliveryChargeFromDB();
+// ✅ Get Delivery Settings
+export const getDeliverySettings = catchAsync(async (req, res) => {
+  const result = await settingsServices.getDeliverySettingsFromDB();
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Delivery charge retrieved successfully!",
+    message: "Delivery settings retrieved successfully!",
     data: result,
   });
 });
@@ -285,6 +285,6 @@ export const settingsControllers = {
   getSliderImages,
   getContactAndSocial,
   getMobileMfs,
-  getDeliveryCharge,
+  getDeliverySettings,
   deleteBannerSlider,
 };

@@ -23,7 +23,7 @@ router.get("/logo", settings_controller_1.settingsControllers.getLogo);
 router.get("/slider-images", settings_controller_1.settingsControllers.getSliderImages);
 router.get("/contact-and-social", settings_controller_1.settingsControllers.getContactAndSocial);
 router.get("/mobile-mfs", settings_controller_1.settingsControllers.getMobileMfs);
-router.get("/delivery-charge", settings_controller_1.settingsControllers.getDeliveryCharge);
+router.get("/delivery-settings", settings_controller_1.settingsControllers.getDeliverySettings);
 router.post("/", uploadFields, settings_controller_1.settingsControllers.createSettings);
 router.patch("/", uploadFields, settings_controller_1.settingsControllers.updateSettings);
 // PATCH: update only MFS logos and numbers

@@ -62,12 +62,12 @@ const getMobileMfsFromDB = () => __awaiter(void 0, void 0, void 0, function* () 
         throw new handleAppError_1.default(404, "Mobile MFS info not found!");
     return { mobileMfs: settings.mobileMfs };
 });
-// ✅ Get Delivery Charge Only (if exists)
-const getDeliveryChargeFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+// ✅ Get Delivery Settings Only
+const getDeliverySettingsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const settings = yield settings_model_1.SettingsModel.findOne();
-    if (!(settings === null || settings === void 0 ? void 0 : settings.deliveryCharge) && (settings === null || settings === void 0 ? void 0 : settings.deliveryCharge) !== 0)
-        throw new handleAppError_1.default(404, "Delivery charge not found!");
-    return { deliveryCharge: settings.deliveryCharge };
+    if (!(settings === null || settings === void 0 ? void 0 : settings.deliverySettings))
+        throw new handleAppError_1.default(404, "Delivery settings not found!");
+    return { deliverySettings: settings.deliverySettings };
 });
 // ✅ Update Settings
 // const updateSettingsOnDB = async (updatedData: Partial<TSettings>) => {
@@ -275,6 +275,10 @@ const updateSettingsOnDB = (updatedData) => __awaiter(void 0, void 0, void 0, fu
     if (updatedData.contactAndSocial) {
         updatedData.contactAndSocial = Object.assign(Object.assign({}, (settings.contactAndSocial || {})), (updatedData.contactAndSocial || {}));
     }
+    // ✅ Deep merge for deliverySettings
+    if (updatedData.deliverySettings) {
+        updatedData.deliverySettings = Object.assign(Object.assign({}, (settings.deliverySettings || {})), (updatedData.deliverySettings || {}));
+    }
     // ✅ Update document - Use $set to replace entire fields
     const result = yield settings_model_1.SettingsModel.findOneAndUpdate({}, { $set: updatedData }, {
         new: true,
@@ -322,7 +326,7 @@ exports.settingsServices = {
     getSliderImagesFromDB,
     getContactAndSocialFromDB,
     getMobileMfsFromDB,
-    getDeliveryChargeFromDB,
+    getDeliverySettingsFromDB,
     updateSettingsOnDB,
     updateMfsSettingsOnDB,
     deleteBannerSliderFromDB,

@@ -52,7 +52,12 @@ exports.createSettingsValidationSchema = zod_1.z.object({
                 .optional(),
         })
             .optional(),
-        deliveryCharge: zod_1.z.number().optional(),
+        deliverySettings: zod_1.z
+            .object({
+            insideDhakaCharge: zod_1.z.number().optional(),
+            outsideDhakaCharge: zod_1.z.number().optional(),
+        })
+            .optional(),
         sliderImages: zod_1.z.array(sliderImageSchema).max(4).optional(),
         contactAndSocial: zod_1.z
             .object({

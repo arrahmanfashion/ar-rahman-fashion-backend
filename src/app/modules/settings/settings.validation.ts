@@ -51,7 +51,12 @@ export const createSettingsValidationSchema = z.object({
           .optional(),
       })
       .optional(),
-    deliveryCharge: z.number().optional(),
+    deliverySettings: z
+      .object({
+        insideDhakaCharge: z.number().optional(),
+        outsideDhakaCharge: z.number().optional(),
+      })
+      .optional(),
     sliderImages: z.array(sliderImageSchema).max(4).optional(),
     contactAndSocial: z
       .object({

@@ -74,7 +74,10 @@ const settingsSchema = new Schema<TSettings>(
       upay: upaySchema,
     },
 
-    deliveryCharge: { type: Number, default: 0 },
+    deliverySettings: {
+      insideDhakaCharge: { type: Number, default: 0 },
+      outsideDhakaCharge: { type: Number, default: 0 },
+    },
 
     contactAndSocial: {
       address: { type: String },

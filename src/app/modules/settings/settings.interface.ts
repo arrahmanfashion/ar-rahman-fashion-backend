@@ -42,7 +42,10 @@ export type TSettings = {
     description: string;
   };
 
-  deliveryCharge?: number;
+  deliverySettings?: {
+    insideDhakaCharge?: number;
+    outsideDhakaCharge?: number;
+  };
 
   mobileMfs?: {
     bKash?: TbKash;
