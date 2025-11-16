@@ -25,6 +25,7 @@ const totalAmountZodSchema = z.object({
     error: (issue) =>
       issue.input === undefined ? "Discount is required!" : "Must be a number!",
   }),
+  deliveryCharge: z.number().optional().default(0),
   total: z.number({
     error: (issue) =>
       issue.input === undefined ? "Total is required!" : "Must be a number!",
@@ -178,6 +179,8 @@ export const createOrderZodSchema = z.object({
   customerInfo: customerInfoZodSchema,
 
   paymentInfo: paymentInfoZodSchema,
+
+  deliveryCharge: z.number().optional().default(0),
 
   totalAmount: z.number({
     error: (issue) =>

@@ -48,6 +48,10 @@ const totalAmountSchema = new mongoose_1.Schema({
         type: Number,
         required: [true, "Discount is required!"],
     },
+    deliveryCharge: {
+        type: Number,
+        default: 0,
+    },
     total: {
         type: Number,
         required: [true, "Total is required!"],
@@ -315,6 +319,10 @@ const orderSchema = new mongoose_1.Schema({
     paymentInfo: {
         type: mongoose_1.Schema.Types.Mixed,
         required: true,
+    },
+    deliveryCharge: {
+        type: Number,
+        default: 0,
     },
     totalAmount: {
         type: Number,

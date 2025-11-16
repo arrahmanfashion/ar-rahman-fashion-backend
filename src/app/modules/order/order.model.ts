@@ -63,6 +63,10 @@ const totalAmountSchema = new Schema<TTotalAmount>(
       type: Number,
       required: [true, "Discount is required!"],
     },
+    deliveryCharge: {
+      type: Number,
+      default: 0,
+    },
     total: {
       type: Number,
       required: [true, "Total is required!"],
@@ -359,6 +363,10 @@ const orderSchema = new Schema<TOrder>(
     paymentInfo: {
       type: Schema.Types.Mixed,
       required: true,
+    },
+    deliveryCharge: {
+      type: Number,
+      default: 0,
     },
     totalAmount: {
       type: Number,

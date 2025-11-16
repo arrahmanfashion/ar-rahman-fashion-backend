@@ -17,6 +17,7 @@ export type TTotalAmount = {
   tax?: number;
   shipping?: TShipping;
   discount: number;
+  deliveryCharge?: number;
   total: number;
 };
 
@@ -93,6 +94,7 @@ export type TOrder = {
   orderInfo: TOrderInfo[];
   customerInfo: TCustomerInfo;
   paymentInfo: TPaymentInfo | "cash-on";
+  deliveryCharge?: number;
   totalAmount: number;
   orderNote?: string;
 };

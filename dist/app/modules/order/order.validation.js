@@ -23,6 +23,7 @@ const totalAmountZodSchema = zod_1.z.object({
     discount: zod_1.z.number({
         error: (issue) => issue.input === undefined ? "Discount is required!" : "Must be a number!",
     }),
+    deliveryCharge: zod_1.z.number().optional().default(0),
     total: zod_1.z.number({
         error: (issue) => issue.input === undefined ? "Total is required!" : "Must be a number!",
     }),
@@ -152,6 +153,7 @@ exports.createOrderZodSchema = zod_1.z.object({
     isCancelled: zod_1.z.boolean().optional().default(false),
     customerInfo: customerInfoZodSchema,
     paymentInfo: paymentInfoZodSchema,
+    deliveryCharge: zod_1.z.number().optional().default(0),
     totalAmount: zod_1.z.number({
         error: (issue) => issue.input === undefined
             ? "Total amount is required!"
