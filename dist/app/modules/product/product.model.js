@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductModel = void 0;
 const mongoose_1 = require("mongoose");
 const calculateDiscount = (price, salePrice) => {
-    if (!salePrice || salePrice <= 0)
+    if (!salePrice || salePrice <= 0 || salePrice >= price)
         return 0;
     return Math.round(((price - salePrice) / price) * 100);
 };
@@ -89,13 +89,6 @@ const productInfoSchema = new mongoose_1.Schema({
     },
     salePrice: {
         type: Number,
-        required: [true, "Sale price is Required!"],
-    },
-    retailPrice: {
-        type: Number,
-    },
-    wholeSalePrice: {
-        type: Number,
     },
     discount: {
         type: Number,
@@ -168,23 +161,20 @@ const productSchema = new mongoose_1.Schema({
 });
 // 🔹 Pre-save middleware (for create)
 productSchema.pre("save", function (next) {
-    var _a, _b;
+    var _a;
     const product = this;
-    if (((_a = product.productInfo) === null || _a === void 0 ? void 0 : _a.price) && ((_b = product.productInfo) === null || _b === void 0 ? void 0 : _b.salePrice)) {
+    if ((_a = product.productInfo) === null || _a === void 0 ? void 0 : _a.price) {
         product.productInfo.discount = calculateDiscount(product.productInfo.price, product.productInfo.salePrice);
-    }
-    else {
-        product.productInfo.discount = 0;
     }
     next();
 });
 // 🔹 Pre-findOneAndUpdate middleware (for update)
 productSchema.pre("findOneAndUpdate", function (next) {
-    var _a, _b;
+    var _a;
     const update = this.getUpdate();
     if (((_a = update === null || update === void 0 ? void 0 : update.productInfo) === null || _a === void 0 ? void 0 : _a.price) !== undefined) {
         const price = update.productInfo.price;
-        const salePrice = (_b = update.productInfo.salePrice) !== null && _b !== void 0 ? _b : 0;
+        const salePrice = update.productInfo.salePrice;
         update.productInfo.discount = calculateDiscount(price, salePrice);
     }
     this.setUpdate(update);

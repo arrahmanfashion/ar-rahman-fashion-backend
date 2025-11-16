@@ -8,7 +8,7 @@ import {
 } from "./product.interface";
 
 const calculateDiscount = (price: number, salePrice?: number) => {
-  if (!salePrice || salePrice <= 0) return 0;
+  if (!salePrice || salePrice <= 0 || salePrice >= price) return 0;
   return Math.round(((price - salePrice) / price) * 100);
 };
 
@@ -108,13 +108,6 @@ const productInfoSchema = new Schema<TProductInfo>(
     },
     salePrice: {
       type: Number,
-      required: [true, "Sale price is Required!"],
-    },
-    retailPrice: {
-      type: Number,
-    },
-    wholeSalePrice: {
-      type: Number,
     },
     discount: {
       type: Number,
@@ -197,13 +190,11 @@ const productSchema = new Schema<TProduct>(
 productSchema.pre("save", function (next) {
   const product = this as any;
 
-  if (product.productInfo?.price && product.productInfo?.salePrice) {
+  if (product.productInfo?.price) {
     product.productInfo.discount = calculateDiscount(
       product.productInfo.price,
       product.productInfo.salePrice
     );
-  } else {
-    product.productInfo.discount = 0;
   }
 
   next();
@@ -215,7 +206,7 @@ productSchema.pre("findOneAndUpdate", function (next) {
 
   if (update?.productInfo?.price !== undefined) {
     const price = update.productInfo.price;
-    const salePrice = update.productInfo.salePrice ?? 0;
+    const salePrice = update.productInfo.salePrice;
     update.productInfo.discount = calculateDiscount(price, salePrice);
   }
 

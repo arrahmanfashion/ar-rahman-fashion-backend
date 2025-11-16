@@ -68,11 +68,7 @@ const productInfoZodSchema = zod_1.z.object({
     price: zod_1.z.number({
         error: () => "Price is required!",
     }),
-    salePrice: zod_1.z.number({
-        error: () => "Sale price is required!",
-    }),
-    retailPrice: zod_1.z.number().optional(),
-    wholeSalePrice: zod_1.z.number().optional(),
+    salePrice: zod_1.z.number().optional(),
     discount: zod_1.z.number().optional(),
     quantity: zod_1.z.number({
         error: () => "Quantity is required!",

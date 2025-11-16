@@ -30,9 +30,7 @@ export type TExternal = {
 
 export type TProductInfo = {
   price: number;
-  salePrice: number;
-  retailPrice?: number;
-  wholeSalePrice?: number;
+  salePrice?: number;
   discount?: number;
   quantity: number;
   sku: string;
